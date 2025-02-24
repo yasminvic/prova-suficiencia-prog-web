@@ -71,13 +71,6 @@ nav{
     display: block;
 }
 
-/*h1*/
-.title{
-    font-family: 'harry', serif;
-    font-size: 100px;
-    text-align: center;
-}
-
 /*paragrafo*/
 p{
     text-indent: 1.5em;

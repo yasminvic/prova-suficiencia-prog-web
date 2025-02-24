@@ -1,12 +1,10 @@
 
 //Confs
-const URL_CHARACTERS = 'https://hp-api.herokuapp.com/api/characters/';
-const URL_ALUNO = 'https://hp-api.herokuapp.com/api/characters/students';
-const URL_FUNC = 'https://hp-api.herokuapp.com/api/characters/staff';
+const URL = 'https://jsonplaceholder.typicode.com/photos';
 
 //realiza comunicação com a API
-const comunAPI = (url, functionCallBack, title) =>{
-    fetch(url).then(
+const comunAPI = (functionCallBack) =>{
+    fetch(URL).then(
                     (response) => response.json(), 
                     (error) => console.log(error)
                 ).then(

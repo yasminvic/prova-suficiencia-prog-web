@@ -1,97 +1,47 @@
-var listPers = new Array();
+var lista = new Array();
 
-var todos = getId('btn-all');
-var aluno = getId('btn-aluno');
-var func = getId('btn-func');
-var destaque = getId('destaque');
+var btnListar = getId('btn-listar');
 
 //add evento de clique
-aluno.addEventListener('click', function(){
-    destaque.hidden=true;
-    comunAPI(URL_ALUNO, criaListaPers, 'Alunos');
-});
-
-func.addEventListener('click', function(){
-    destaque.hidden=true;
-    comunAPI(URL_FUNC, criaListaPers, 'Funcionários');
-});
-
-todos.addEventListener('click', function(){
+btnListar.addEventListener('click', function(){
     destaque.hidden = true;
-    comunAPI(URL_CHARACTERS, criaListaPers, 'Personagens');
+    comunAPI(criaListaPers);
 })
 
 //add todos os personagens na lista
-const criaListaPers = (data, title) => {
-    listPers = new Array();
-    listPers.push(title);
+const criaLista = (data) => {
+    lista = new Array();
     data.forEach(character => {
-        listPers.push(character);
+        lista.push(character);
     });
 
-    //retira os personagens que nao tem foto
-    if (listPers[0] == 'Alunos'){
-        listPers.splice(12, listPers.length - 11);
-        listPers.shift();
-    
-    }else if (listPers[0] == 'Funcionários'){
-        listPers.splice(9, listPers.length - 8);
-        listPers.shift();
-    
-    }else if (listPers[0] == 'Personagens'){
-        listPers.splice(26, listPers.length - 25);
-        listPers.shift();
-    }  
     //funcao que constroe os cards  
-    listaCharacters(title);
+    listaCharacters();
 }
 
 //construindo o card
-const listaCharacters = (title) =>{
+const listaCharacters = () =>{
     //pegando e limpando a main
     let main = getId('main-content');
     main.innerHTML = ''; 
 
     //criando html
     let div = document.createElement('div');
-    let h1 = `<h1 class="text-center mt-4 title">Lista de ${title}</h1>`;
+    let h1 = `<h1 class="text-center mt-4 title">Lista</h1>`;
 
     //percorrendo a lista de personagens
-    listPers.forEach((character) => {
-
-        //cor das casas
-        let casa = `${character.house}`;
-        let cor = '';
-        if(casa === 'Gryffindor'){
-            cor = 'danger';
-        }else if(casa === 'Slytherin'){
-            cor = 'success';
-        }else if(casa === 'Hufflepuff'){
-            cor = 'warning';
-        }else if(casa === 'Ravenclaw'){
-            cor = 'info';
-        }else if(casa === ""){
-            cor = 0;
-        }
-
-        //casa nula
-        if (casa === ""){
-            casa = 'No house';
-            cor = 'light';
-        }
-
+    listPers.forEach((item) => {
         //criando html
         let card = document.createElement('div');
         let cardBody = `<div class="card-header bg-dark border-bottom border-light carta-header">
-                    <h2 class="text-center title-card">${character.name}</h2>
+                    <h2 class="text-center title-card">${item.title}</h2>
                 </div>
                 <div class="card-body bg-dark carta-body">
-                    <img src="${character.image}" alt="${character.name}" class="card-image card-img-top mt-2 mb-1 img-fluid img-custom">
-                    <h3 class="mt-3 p-2 text-${cor} text-center border border-${cor}">${casa}</h3>
+                    <img src="${item.url}" alt="${character.url}" class="card-image card-img-top mt-2 mb-1 img-fluid img-custom">
                 </div>`
             
         //add event de clique
-        card.addEventListener('click', () => criaModal(character));
+        card.addEventListener('click', () => criaModal(item));
 
         //estilizando
         card.classList.add('card', 'col-3', 'my-4', 'border-secondary', 'bg-dark', 'ms-1', 'm-3', 'carta');
