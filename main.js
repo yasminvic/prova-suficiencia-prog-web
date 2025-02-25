@@ -4,6 +4,30 @@ const rowsPerPage = 10;
 const totalPages = Math.ceil(lista.length / rowsPerPage);
 var currentPage = 1;
 
+var btnListar = getId('btn-listar');
+
+btnListar.addEventListener('click', function(){
+    let list = getJSONItem("LISTA");
+    mostrarConteudo('tabela-section', '#tabela-section');
+})
+
+
+
+const mostrarConteudo = (tagId, idSection) =>{
+    var tagMain = getId('main-content');
+    var tag = getId(tagId);
+
+    $("#section-home").hide();
+    $(idSection).show();
+    
+    tagMain.appendChild(tag);
+}
+
+
+
+
+
+
 function setActivePage() {
     getId("pageAnterior").classList.toggle("disabled", currentPage === 1);
     getId("proximoPage").classList.toggle("disabled", currentPage === totalPages);
@@ -39,24 +63,28 @@ const criaLista = (data) => {
     //add no localstorage
     setJSONItem("LISTA", lista);
 
-    displayTable(currentPage);
-    document.getElementById("pageAnterior").addEventListener("click", function () {
-        if (currentPage > 1) {
-            currentPage--;
-            displayTable(currentPage);
-        }
-    });
+    // displayTable(currentPage);
+    // document.getElementById("pageAnterior").addEventListener("click", function () {
+    //     if (currentPage > 1) {
+    //         currentPage--;
+    //         displayTable(currentPage);
+    //     }
+    // });
 
-    document.getElementById("proximoPage").addEventListener("click", function () {
-        if (currentPage < totalPages) {
-            currentPage++;
-            displayTable(currentPage);
-        }
-    });
+    // document.getElementById("proximoPage").addEventListener("click", function () {
+    //     if (currentPage < totalPages) {
+    //         currentPage++;
+    //         displayTable(currentPage);
+    //     }
+    // });
 }
 
 
 document.addEventListener("DOMContentLoaded", function () {
+
+    $("#tabela-section").hide();
+    $("#forms-section").hide();
+//$(elem).show();
     comunAPI(criaLista);
     // console.log(lista);
     // lista = [

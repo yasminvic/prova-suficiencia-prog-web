@@ -18,9 +18,9 @@
                     <a class="nav-link active text-white" id="btn-home" aria-current="page" href="index.html">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-white btn-listar" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- <a id="btn-listar" class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Listar
-                    </a>
+                    </a> -->
                   </li>
                   <li class="nav-item">
                     <a class="nav-link text-white btn-listar" href="sectionInserir" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,64 +42,71 @@
             </div>
           </nav>
     </header>
-    <main id="main-content" class="text-white container"> 
-        <h3 class="title">Prova suficiência</h3>
+    <main id="main-content" class="text-black container justify-content-center"> 
+      <section id="section-home" class="justify-content-center container"> 
+      <h3 class="title">Prova suficiência</h3>
         <p class="">
             Projeto desenvolvido com o objetivo de validar a matéria de Programação Web I.
-        </p>
+        </p>  
+        <a id="btn-listar" class="nav-link text-black" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Listar
+        </a>
+      </section> 
 
-        <section class="row justify-content-center">
-        <div class="mt-4 container justify-content-itens">
-          <h2 class="mb-3">Tabela com Paginação</h2>
-          <table class="table table-striped">
-              <thead>
-                  <tr>
-                      <th>ID</th>
-                      <th>Título</th>
-                      <th>Url</th>
-                      <th>Thumbnail Url</th>
-                  </tr>
-              </thead>
-              <tbody id="table-body">
-                  <!-- As linhas da tabela serão inseridas via JavaScript -->
-              </tbody>
-          </table> 
-          <nav class="col-9">
-            <ul class="pagination" id="pagination">
-              <li id="pageAnterior" class="page-item"><a class="page-link" href="#">Anterior</a></li>
-              <li id="proximoPage" class="page-item"><a class="page-link" href="#">Próximo</a></li>
-            </ul>
-        </nav>
-      </div>
-      
-    </section>
-    <section id="sectionInserir">
-        <!--Forms - Adicionar id e albumId-->
-        <form>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Título</label>
-            <input type="text" class="form-control" id="titulo" aria-describedby="tituçpHelp">
-            <!-- teste de validação
-            <div class="input-group has-validation">
-              <span class="input-group-text" id="inputGroupPrepend">@</span>
-              <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-              <div class="invalid-feedback">
-                Please choose a username.
-              </div>
-            </div> -->
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Url</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Url da thumbnail</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-            <div id="emailHelp" class="form-text">Uma thumbnail é uma imagem em miniatura e comprimida usada na internet para prever a imagem original.</div>
-          </div>
-          <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </form>
+        <section id="tabela-section" class="row justify-content-center">
+          <div class="mt-4 container justify-content-itens">
+            <h2 class="mb-3">Tabela com Paginação</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Url</th>
+                        <th>Thumbnail Url</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- As linhas da tabela serão inseridas via JavaScript -->
+                </tbody>
+            </table> 
+            <nav class="col-9">
+              <ul class="pagination" id="pagination">
+                <li id="pageAnterior" class="page-item"><a class="page-link" href="#">Anterior</a></li>
+                <li id="proximoPage" class="page-item"><a class="page-link" href="#">Próximo</a></li>
+              </ul>
+          </nav>
+        </div>
+        
       </section>
+
+
+        <section id="forms-section" class="disable">
+          <!--Forms - Adicionar id e albumId-->
+          <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Título</label>
+              <input type="text" class="form-control" id="titulo" aria-describedby="tituçpHelp">
+              <!-- teste de validação
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                <div class="invalid-feedback">
+                  Please choose a username.
+                </div>
+              </div> -->
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Url</label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Url da thumbnail</label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
+              <div id="emailHelp" class="form-text">Uma thumbnail é uma imagem em miniatura e comprimida usada na internet para prever a imagem original.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+          </form>
+        </section>
     </main>
     
 
