@@ -22,6 +22,25 @@
                       Listar
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white btn-listar" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Inserir
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white btn-listar" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Alterar
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <!-- <a class="nav-link text-white btn-listar" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Excluir
+                    </a> -->
+                     <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalExcluir">
+  Excluir
+</button>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -32,65 +51,61 @@
         <p class="">
             Projeto desenvolvido com o objetivo de validar a matéria de Programação Web I.
         </p>
+
+
+        <!--Forms - Adicionar id e albumId-->
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Título</label>
+            <input type="text" class="form-control" id="titulo" aria-describedby="tituçpHelp">
+            <!-- teste de validação
+            <div class="input-group has-validation">
+              <span class="input-group-text" id="inputGroupPrepend">@</span>
+              <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback">
+                Please choose a username.
+              </div>
+            </div> -->
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Url</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Url da thumbnail</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+            <div id="emailHelp" class="form-text">Uma thumbnail é uma imagem em miniatura e comprimida usada na internet para prever a imagem original.</div>
+          </div>
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
     </main>
-    <footer class="text-white border-top">
-        <div
-  class="d-flex flex-row align-items-center justify-between text-center px-5 custom-footer"
->
-  <div class="text-center flex-fill">
-    <p class="m-0">
-      Site projeto de Yasmin - Todos os
-      direitos reservados &copy;
-    </p>
-  </div>
-</div>
-    </footer>
+    
 
-    <!--Modal-->
-    <div class="modal fade" id="charModal"  tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title fs-5">Personagem</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div id="modal-body" class="modal-body">
-
-            <!-- 
-              <div.card>
-                <div class="card-header">
-                  <h1>nome</h1>
-                  <img>
-              <div class="card-body">
-              <ol class="list-group list-group-numbered">
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Subheading</div>
-                  Content for list item
-                </div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Subheading</div>
-                  Content for list item
-                </div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Subheading</div>
-                  Content for list item
-                </div>
-              </li>
-            </ol> 
-          </div>
-          </div>-->
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="modalExcluir" tabindex="-1" aria-labelledby="modalExcluirLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalExcluirLabel">Excluir registro</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Informe o ID do registro</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
+        <button type="button" class="btn btn-secondary">Cancelar</button>
       </div>
     </div>
+  </div>
+</div>
 
     <div id="scripts">
         <!-- JQuery -->
