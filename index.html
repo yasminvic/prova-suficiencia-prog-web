@@ -48,26 +48,30 @@
             Projeto desenvolvido com o objetivo de validar a matéria de Programação Web I.
         </p>
 
-        <section>
-        <div class="container mt-4">
+        <section class="row justify-content-center">
+        <div class="mt-4 container justify-content-itens">
           <h2 class="mb-3">Tabela com Paginação</h2>
           <table class="table table-striped">
               <thead>
                   <tr>
                       <th>ID</th>
-                      <th>Nome</th>
-                      <th>Email</th>
+                      <th>Título</th>
+                      <th>Url</th>
+                      <th>Thumbnail Url</th>
                   </tr>
               </thead>
               <tbody id="table-body">
                   <!-- As linhas da tabela serão inseridas via JavaScript -->
               </tbody>
-          </table>
-          
-          <nav>
-              <ul class="pagination" id="pagination"></ul>
-          </nav>
+          </table> 
+          <nav class="col-9">
+            <ul class="pagination" id="pagination">
+              <li id="pageAnterior" class="page-item"><a class="page-link" href="#">Anterior</a></li>
+              <li id="proximoPage" class="page-item"><a class="page-link" href="#">Próximo</a></li>
+            </ul>
+        </nav>
       </div>
+      
     </section>
     <section id="sectionInserir">
         <!--Forms - Adicionar id e albumId-->
@@ -135,6 +139,7 @@
         <!-- Bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="js/library.js"></script>
+        <script src="js/localStorage.js"></script>
         <script src="./main.js"></script>
 </body>
 </html>
