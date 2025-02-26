@@ -110,6 +110,61 @@
           </form>
           </div>
         </section>
+
+        <section id="forms-alterar-section" class="justify-content-center">
+          <!--Forms - Adicionar id e albumId-->
+          <div class="mt-4 container justify-content-itens">
+            <h2 class="text-center mt-10 mb-5">Alterar registro</h2>
+          <form>
+            <div class="mb-3">
+              <label for="id" class="form-label">Informe ID do registro</label>
+              <input id="id-alterar-input" type="number" min="1" class="form-control" id="id" aria-describedby="idHelp">
+              <!-- teste de validação
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                <div class="invalid-feedback">
+                  Please choose a username.
+                </div>
+              </div> -->
+            </div>        
+            <div class="mb-3">
+              <label for="albumId" class="form-label">Álbum ID</label>
+              <input id="albumId-alterar-input" type="number" min="1" value="1" class="form-control" id="albumId" aria-describedby="albumIdHelp">
+              <!-- teste de validação
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                <div class="invalid-feedback">
+                  Please choose a username.
+                </div>
+              </div> -->
+            </div>
+            <div class="mb-3">
+              <label for="titulo" class="form-label">Título</label>
+              <input id="title-alterar-input" type="text" class="form-control" id="titulo" aria-describedby="tituloHelp">
+              <!-- teste de validação
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                <div class="invalid-feedback">
+                  Please choose a username.
+                </div>
+              </div> -->
+            </div>
+            <div class="mb-3">
+              <label for="url" class="form-label">Url</label>
+              <input id="url-alterar-input" type="url" class="form-control" id="url">
+            </div>
+            <div class="mb-3">
+              <label for="thumbnail" class="form-label">Url da thumbnail</label>
+              <input id="thumbnail-alterar-input" type="url" class="form-control" id="thumbnail">
+              <div id="thumbnailExplicacao" class="form-text">Uma thumbnail é uma imagem em miniatura e comprimida usada na internet para prever a imagem original.</div>
+            </div>
+            <button id="btn-alterar" type="submit" class="btn btn-warning">Alterar</button>
+          </form>
+          </div>
+        </section>
     </main>
     
 

@@ -48,9 +48,16 @@ $("#proximoPage").click(function () {
 $("#btn-excluir").click(function(){
     let id = $("#id-registro-excluir").val();
     excluirRegistro(id);
-})
+});
 
+var idAlterar = $("#id-alterar-input");
+idAlterar.on('input',function(e){
+    var item = lista.find(item => item == idAlterar.val());
 
+    if(item != undefined){
+        
+    }
+});
 
 const criarListagem = () =>{
     let list = getJSONItem("LISTA");
@@ -81,7 +88,6 @@ function displayTable(page, listaDados) {
         <td>${item.title}</td>
         <td><img src=${item.url} width="30"></td>
         <td><img src=${item.thumbnailUrl} width="30""></td>
-        <td><button type="button" class="btn btn-outline-warning onClick="alterarRegistro(${item.id})"">Alterar</button>
         <button type="button" class="btn btn-outline-danger" onClick="excluirRegistro(${item.id})">Excluir</button></td></tr>`;
         tabelaBody.innerHTML += linha;
     });
@@ -124,18 +130,17 @@ const excluirRegistro = (id) =>{
     alert(`Registro ${id} foi excluído`);
 }
 
-const alterarRegistro = (id) =>{
-    let registroId = lista.findIndex(item => item.id == id);
+const alterarRegistro = (registroAlterado) =>{
+    let registroId = lista.findIndex(item => item.id == registroAlterado.id);
 
     if(registroId == -1){
         alert("Registro não encontrado!");
         return;
     }
 
-
-    lista.splice(registroId, 1);
+    lista[registroId] = registroAlterado;
     atualizarLocalStorage();
-    alert(`Registro ${id} foi excluído`);
+    alert(`Registro ${id} foi alterado com sucesso`);
 }
 
 const atualizarLocalStorage = () =>{
