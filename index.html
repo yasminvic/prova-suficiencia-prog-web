@@ -15,25 +15,22 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active text-white" id="btn-home" aria-current="page" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <!-- <a id="btn-listar" class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a id="btn-listar" class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Listar
-                    </a> -->
+                    </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-white btn-listar" href="sectionInserir" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a id="btn-inserir" class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Inserir
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-white btn-listar" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Alterar
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-white btn-listar" href="#" role="button" data-bs-toggle="modal" data-bs-target="#modalExcluir" aria-expanded="false">
+                    <a class="nav-link text-white" href="#" role="button" data-bs-toggle="modal" data-bs-target="#modalExcluir" aria-expanded="false">
                       Excluir
                     </a>
                   </li>
@@ -43,26 +40,18 @@
           </nav>
     </header>
     <main id="main-content" class="text-black container justify-content-center"> 
-      <section id="section-home" class="justify-content-center container"> 
-      <h3 class="title">Prova suficiência</h3>
-        <p class="">
-            Projeto desenvolvido com o objetivo de validar a matéria de Programação Web I.
-        </p>  
-        <a id="btn-listar" class="nav-link text-black" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Listar
-        </a>
-      </section> 
-
         <section id="tabela-section" class="row justify-content-center">
           <div class="mt-4 container justify-content-itens">
-            <h2 class="mb-3">Tabela com Paginação</h2>
+            <h2 class="mb-3 text-center mb-5">Listagem dos registros</h2>
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Álbum ID</th>
                         <th>Título</th>
                         <th>Url</th>
                         <th>Thumbnail Url</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody id="table-body">
@@ -70,7 +59,7 @@
                 </tbody>
             </table> 
             <nav class="col-9">
-              <ul class="pagination" id="pagination">
+              <ul class="pagination bg-white" id="pagination">
                 <li id="pageAnterior" class="page-item"><a class="page-link" href="#">Anterior</a></li>
                 <li id="proximoPage" class="page-item"><a class="page-link" href="#">Próximo</a></li>
               </ul>
@@ -79,13 +68,14 @@
         
       </section>
 
-
-        <section id="forms-section" class="disable">
+        <section id="forms-section" class="justify-content-center">
           <!--Forms - Adicionar id e albumId-->
+          <div class="mt-4 container justify-content-itens">
+            <h2 class="text-center mt-10 mb-5">Inserir novos registros</h2>
           <form>
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Título</label>
-              <input type="text" class="form-control" id="titulo" aria-describedby="tituçpHelp">
+              <label for="albumId" class="form-label">Álbum ID</label>
+              <input id="albumId-input" type="number" min="1" value="1" class="form-control" id="albumId" aria-describedby="albumIdHelp">
               <!-- teste de validação
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend">@</span>
@@ -96,16 +86,29 @@
               </div> -->
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Url</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <label for="titulo" class="form-label">Título</label>
+              <input id="title-input" type="text" class="form-control" id="titulo" aria-describedby="tituloHelp">
+              <!-- teste de validação
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                <div class="invalid-feedback">
+                  Please choose a username.
+                </div>
+              </div> -->
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Url da thumbnail</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
-              <div id="emailHelp" class="form-text">Uma thumbnail é uma imagem em miniatura e comprimida usada na internet para prever a imagem original.</div>
+              <label for="url" class="form-label">Url</label>
+              <input id="url-input" type="url" class="form-control" id="url">
             </div>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <div class="mb-3">
+              <label for="thumbnail" class="form-label">Url da thumbnail</label>
+              <input id="thumbnail-input" type="url" class="form-control" id="thumbnail">
+              <div id="thumbnailExplicacao" class="form-text">Uma thumbnail é uma imagem em miniatura e comprimida usada na internet para prever a imagem original.</div>
+            </div>
+            <button id="btn-cadastrar" type="submit" class="btn btn-primary">Cadastrar</button>
           </form>
+          </div>
         </section>
     </main>
     
@@ -120,16 +123,14 @@
       </div>
       <div class="modal-body">
        <form>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Informe o ID do registro</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
+        <div data-mdb-input-init class="form-outline">
+          <label class="form-label" for="typeNumber">ID do registro</label>
+          <input type="number" id="id-registro-excluir" class="form-control" min="1" value="1" />
+        </div>
        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
+        <button id="btn-excluir" type="button" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
         <button type="button" class="btn btn-secondary">Cancelar</button>
       </div>
     </div>

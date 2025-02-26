@@ -1,97 +1,157 @@
 var lista = new Array();
 var table = getId('table-listar');
-const rowsPerPage = 10;
-const totalPages = Math.ceil(lista.length / rowsPerPage);
-var currentPage = 1;
+const linhasPorPagina = 10;
+var totalPag;
+var pagAtual = 1;
 
-var btnListar = getId('btn-listar');
 
-btnListar.addEventListener('click', function(){
-    let list = getJSONItem("LISTA");
-    mostrarConteudo('tabela-section', '#tabela-section');
+$("#btn-listar").click(function(){
+    $("#forms-section").hide();
+    criarListagem();
+});
+
+$("#btn-inserir").click(function(){
+    $("#tabela-section").hide();
+    $("#forms-section").show();
+});
+
+$("#btn-cadastrar").click(function(){
+
+    let registro = {
+        id: 0,
+        albumId: $("#albumId-input").val(),
+        title: $("#title-input").val(),
+        url: $("#url-input").val(),
+        thumbnailUrl: $("#thumbnail-input").val(),
+    };
+
+    cadastrarRegistro(registro);
+});
+
+
+$("#pageAnterior").click(function () {
+    if (pagAtual > 1) {
+        pagAtual--;
+        let listaDados = getJSONItem("LISTA");
+        displayTable(pagAtual, listaDados);
+    }
+});
+
+$("#proximoPage").click(function () {
+    if (pagAtual < totalPag) {
+        pagAtual++;
+        let listaDados = getJSONItem("LISTA");
+        displayTable(pagAtual, listaDados);
+    }
+});
+
+$("#btn-excluir").click(function(){
+    let id = $("#id-registro-excluir").val();
+    excluirRegistro(id);
 })
 
 
 
-const mostrarConteudo = (tagId, idSection) =>{
-    var tagMain = getId('main-content');
-    var tag = getId(tagId);
+const criarListagem = () =>{
+    let list = getJSONItem("LISTA");
 
-    $("#section-home").hide();
-    $(idSection).show();
-    
-    tagMain.appendChild(tag);
+    displayTable(pagAtual, list);
+    $('#tabela-section').show();
 }
-
-
-
-
 
 
 function setActivePage() {
-    getId("pageAnterior").classList.toggle("disabled", currentPage === 1);
-    getId("proximoPage").classList.toggle("disabled", currentPage === totalPages);
+    debugger;
+    getId("pageAnterior").classList.toggle("disabled", pagAtual === 1);
+    getId("proximoPage").classList.toggle("disabled", pagAtual === totalPag);
 }
 
-function displayTable(page) {
-    const start = (page - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-    const paginatedData = lista.slice(start, end);
-    const tableBody = getId("table-body");
-    tableBody.innerHTML = "";
+function displayTable(page, listaDados) {
+    debugger;
+    const inicio = (page - 1) * linhasPorPagina;
+    const fim = inicio + linhasPorPagina;
+    const paginatedData = listaDados.slice(inicio, fim);
+    const tabelaBody = getId("table-body");
+    tabelaBody.innerHTML = "";
     
     paginatedData.forEach(item => {
-        const row = `<tr><td>${item.albumId}</td><td>${item.id}</td><td>${item.url}</td><td>${item.thumbnailUrl}</td>
-        <td><button type="button" class="btn btn-outline-warning">Alterar</button>
-        <button type="button" class="btn btn-outline-danger" onClick="console.log("oi")">Excluir</button></td></tr>`;
-        tableBody.innerHTML += row;
+        const linha = `<tr>
+        <td>${item.id}</td>
+        <td>${item.albumId}</td>
+        <td>${item.title}</td>
+        <td><img src=${item.url} width="30"></td>
+        <td><img src=${item.thumbnailUrl} width="30""></td>
+        <td><button type="button" class="btn btn-outline-warning onClick="alterarRegistro(${item.id})"">Alterar</button>
+        <button type="button" class="btn btn-outline-danger" onClick="excluirRegistro(${item.id})">Excluir</button></td></tr>`;
+        tabelaBody.innerHTML += linha;
     });
-
     setActivePage();
 }
 
-
-
 //add todos os itens na lista
 const criaLista = (data) => {
-    debugger
-    lista = new Array();
     data.forEach(item => {
         lista.push(item);
     });
 
+    totalPag = Math.ceil(lista.length / linhasPorPagina);
     //add no localstorage
     setJSONItem("LISTA", lista);
+}
 
-    // displayTable(currentPage);
-    // document.getElementById("pageAnterior").addEventListener("click", function () {
-    //     if (currentPage > 1) {
-    //         currentPage--;
-    //         displayTable(currentPage);
-    //     }
-    // });
 
-    // document.getElementById("proximoPage").addEventListener("click", function () {
-    //     if (currentPage < totalPages) {
-    //         currentPage++;
-    //         displayTable(currentPage);
-    //     }
-    // });
+const cadastrarRegistro = (registro) => {
+    debugger;
+    //var teste = lista[-1].id;
+    registro.id = lista.length > 0 ? lista[[lista.length - 1]].id + 1: 1;
+    lista.push(registro);
+
+    atualizarLocalStorage();
+    alert(`Registro cadastrado com sucesso!`);
+}
+
+const excluirRegistro = (id) =>{
+    let registroId = lista.findIndex(item => item.id == id);
+
+    if(registroId == -1){
+        alert("Registro não encontrado!");
+        return;
+    }
+
+
+    lista.splice(registroId, 1);
+    atualizarLocalStorage();
+    alert(`Registro ${id} foi excluído`);
+}
+
+const alterarRegistro = (id) =>{
+    let registroId = lista.findIndex(item => item.id == id);
+
+    if(registroId == -1){
+        alert("Registro não encontrado!");
+        return;
+    }
+
+
+    lista.splice(registroId, 1);
+    atualizarLocalStorage();
+    alert(`Registro ${id} foi excluído`);
+}
+
+const atualizarLocalStorage = () =>{
+    removeItem("LISTA");
+    setJSONItem("LISTA", lista);
+    displayTable(pagAtual, lista);
 }
 
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    $("#tabela-section").hide();
+    //$("#tabela-section").hide();
     $("#forms-section").hide();
-//$(elem).show();
-    comunAPI(criaLista);
-    // console.log(lista);
-    // lista = [
-    //     {id: 1, albumId:1, url: "oi"}
-    // ]
-    // displayTable(currentPage);
-    // setupPagination();
-});
 
- console.log(lista);
+    comunAPI(criaLista);
+
+    criarListagem();
+
+});
