@@ -1,5 +1,4 @@
 var lista = new Array();
-var table = getId('table-listar');
 const linhasPorPagina = 10;
 var totalPag;
 var pagAtual = 1;
@@ -7,16 +6,23 @@ var pagAtual = 1;
 
 $("#btn-listar").click(function(){
     $("#forms-section").hide();
+    $("#forms-alterar-section").hide();
     criarListagem();
 });
 
 $("#btn-inserir").click(function(){
     $("#tabela-section").hide();
+    $("#forms-alterar-section").hide();
     $("#forms-section").show();
 });
 
-$("#btn-cadastrar").click(function(){
+$("#btn-alterar").click(function(){
+    $("#tabela-section").hide();
+    $("#forms-section").hide();
+    $("#forms-alterar-section").show();
+});
 
+$("#btn-cadastrar").click(function(){
     let registro = {
         id: 0,
         albumId: $("#albumId-input").val(),
@@ -50,13 +56,33 @@ $("#btn-excluir").click(function(){
     excluirRegistro(id);
 });
 
-var idAlterar = $("#id-alterar-input");
-idAlterar.on('input',function(e){
-    var item = lista.find(item => item == idAlterar.val());
+$("#id-alterar-input").on("change keyup", function () {
+    var idAlterar = $("#id-alterar-input").val();
+    var item = lista.find(item => item.id == idAlterar);
 
-    if(item != undefined){
-        
+    if (item != undefined) {
+        $("#albumId-alterar-input").val(item.albumId);
+        $("#title-alterar-input").val(item.title);
+        $("#url-alterar-input").val(item.url);
+        $("#thumbnail-alterar-input").val(item.thumbnailUrl);
+    } else {
+        $("#albumId-alterar-input").val("");
+        $("#title-alterar-input").val("");
+        $("#url-alterar-input").val("");
+        $("#thumbnail-alterar-input").val("");
     }
+});
+
+$("#btn-alterar-registro").click(function(){
+    var registro = {
+        id: $("#id-alterar-input").val(),
+        albumId: $("#albumId-alterar-input").val(),
+        title: $("#title-alterar-input").val(),
+        url: $("#url-alterar-input").val(),
+        thumbnailUrl: $("#thumbnail-alterar-input").val()
+    };
+
+    alterarRegistro(registro);
 });
 
 const criarListagem = () =>{
@@ -88,7 +114,7 @@ function displayTable(page, listaDados) {
         <td>${item.title}</td>
         <td><img src=${item.url} width="30"></td>
         <td><img src=${item.thumbnailUrl} width="30""></td>
-        <button type="button" class="btn btn-outline-danger" onClick="excluirRegistro(${item.id})">Excluir</button></td></tr>`;
+        <td><button type="button" class="btn btn-outline-danger" onClick="excluirRegistro(${item.id})">Excluir</button></td></tr>`;
         tabelaBody.innerHTML += linha;
     });
     setActivePage();
@@ -107,8 +133,6 @@ const criaLista = (data) => {
 
 
 const cadastrarRegistro = (registro) => {
-    debugger;
-    //var teste = lista[-1].id;
     registro.id = lista.length > 0 ? lista[[lista.length - 1]].id + 1: 1;
     lista.push(registro);
 
@@ -124,10 +148,9 @@ const excluirRegistro = (id) =>{
         return;
     }
 
-
     lista.splice(registroId, 1);
     atualizarLocalStorage();
-    alert(`Registro ${id} foi excluído`);
+    alert(`Registro ${id} foi excluído.`);
 }
 
 const alterarRegistro = (registroAlterado) =>{
@@ -139,8 +162,8 @@ const alterarRegistro = (registroAlterado) =>{
     }
 
     lista[registroId] = registroAlterado;
+    alert(`Registro ${registroAlterado.id} foi alterado com sucesso.`);
     atualizarLocalStorage();
-    alert(`Registro ${id} foi alterado com sucesso`);
 }
 
 const atualizarLocalStorage = () =>{
@@ -151,12 +174,10 @@ const atualizarLocalStorage = () =>{
 
 
 document.addEventListener("DOMContentLoaded", function () {
-
-    //$("#tabela-section").hide();
     $("#forms-section").hide();
+    $("#forms-alterar-section").hide();
 
     comunAPI(criaLista);
 
     criarListagem();
-
 });

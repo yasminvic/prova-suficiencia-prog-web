@@ -10,7 +10,7 @@
 </head>
 <body id="body">
     <header>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg bg-dark">
             <div class="container-fluid">
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -25,7 +25,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a id="btn-alterar" class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Alterar
                     </a>
                   </li>
@@ -41,7 +41,7 @@
     </header>
     <main id="main-content" class="text-black container justify-content-center"> 
         <section id="tabela-section" class="row justify-content-center">
-          <div class="mt-4 container justify-content-itens">
+          <div class=" container justify-content-itens">
             <h2 class="mb-3 text-center mb-5">Listagem dos registros</h2>
             <table class="table table-striped">
                 <thead>
@@ -76,26 +76,10 @@
             <div class="mb-3">
               <label for="albumId" class="form-label">Álbum ID</label>
               <input id="albumId-input" type="number" min="1" value="1" class="form-control" id="albumId" aria-describedby="albumIdHelp">
-              <!-- teste de validação
-              <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                  Please choose a username.
-                </div>
-              </div> -->
             </div>
             <div class="mb-3">
               <label for="titulo" class="form-label">Título</label>
               <input id="title-input" type="text" class="form-control" id="titulo" aria-describedby="tituloHelp">
-              <!-- teste de validação
-              <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                  Please choose a username.
-                </div>
-              </div> -->
             </div>
             <div class="mb-3">
               <label for="url" class="form-label">Url</label>
@@ -106,7 +90,9 @@
               <input id="thumbnail-input" type="url" class="form-control" id="thumbnail">
               <div id="thumbnailExplicacao" class="form-text">Uma thumbnail é uma imagem em miniatura e comprimida usada na internet para prever a imagem original.</div>
             </div>
-            <button id="btn-cadastrar" type="submit" class="btn btn-primary">Cadastrar</button>
+            </div><div class="d-grid">
+            <button id="btn-cadastrar" type="button" class="btn btn-primary">Cadastrar</button>
+          </div>
           </form>
           </div>
         </section>
@@ -119,38 +105,14 @@
             <div class="mb-3">
               <label for="id" class="form-label">Informe ID do registro</label>
               <input id="id-alterar-input" type="number" min="1" class="form-control" id="id" aria-describedby="idHelp">
-              <!-- teste de validação
-              <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                  Please choose a username.
-                </div>
-              </div> -->
             </div>        
             <div class="mb-3">
               <label for="albumId" class="form-label">Álbum ID</label>
-              <input id="albumId-alterar-input" type="number" min="1" value="1" class="form-control" id="albumId" aria-describedby="albumIdHelp">
-              <!-- teste de validação
-              <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                  Please choose a username.
-                </div>
-              </div> -->
+              <input id="albumId-alterar-input" type="number" min="1" class="form-control" id="albumId" aria-describedby="albumIdHelp">
             </div>
             <div class="mb-3">
               <label for="titulo" class="form-label">Título</label>
               <input id="title-alterar-input" type="text" class="form-control" id="titulo" aria-describedby="tituloHelp">
-              <!-- teste de validação
-              <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                  Please choose a username.
-                </div>
-              </div> -->
             </div>
             <div class="mb-3">
               <label for="url" class="form-label">Url</label>
@@ -161,7 +123,9 @@
               <input id="thumbnail-alterar-input" type="url" class="form-control" id="thumbnail">
               <div id="thumbnailExplicacao" class="form-text">Uma thumbnail é uma imagem em miniatura e comprimida usada na internet para prever a imagem original.</div>
             </div>
-            <button id="btn-alterar" type="submit" class="btn btn-warning">Alterar</button>
+            <div class="d-grid">
+            <button id="btn-alterar-registro" type="button" class="btn btn-warning">Alterar</button>
+          </div>
           </form>
           </div>
         </section>
@@ -185,8 +149,8 @@
        </form>
       </div>
       <div class="modal-footer">
-        <button id="btn-excluir" type="button" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
-        <button type="button" class="btn btn-secondary">Cancelar</button>
+        <button id="btn-excluir" type="button" class="btn btn-danger">Excluir</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#modalExcluir">Cancelar</button>
       </div>
     </div>
   </div>
