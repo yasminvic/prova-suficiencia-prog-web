@@ -94,13 +94,11 @@ const criarListagem = () =>{
 
 
 function setActivePage() {
-    debugger;
     getId("pageAnterior").classList.toggle("disabled", pagAtual === 1);
     getId("proximoPage").classList.toggle("disabled", pagAtual === totalPag);
 }
 
 function displayTable(page, listaDados) {
-    debugger;
     const inicio = (page - 1) * linhasPorPagina;
     const fim = inicio + linhasPorPagina;
     const paginatedData = listaDados.slice(inicio, fim);
@@ -136,6 +134,7 @@ const cadastrarRegistro = (registro) => {
     registro.id = lista.length > 0 ? lista[[lista.length - 1]].id + 1: 1;
     lista.push(registro);
 
+    inserirApi(registro);
     atualizarLocalStorage();
     alert(`Registro cadastrado com sucesso!`);
 }
@@ -149,6 +148,7 @@ const excluirRegistro = (id) =>{
     }
 
     lista.splice(registroId, 1);
+    deletarApi(id);
     atualizarLocalStorage();
     alert(`Registro ${id} foi excluído.`);
 }
@@ -163,6 +163,7 @@ const alterarRegistro = (registroAlterado) =>{
 
     lista[registroId] = registroAlterado;
     alert(`Registro ${registroAlterado.id} foi alterado com sucesso.`);
+    alterarApi(registroAlterado);
     atualizarLocalStorage();
 }
 
